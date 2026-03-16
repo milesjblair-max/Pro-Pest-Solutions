@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" role="img" aria-label="Pro Pest Solutions mark">
+  <defs>
+    <linearGradient id="markGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#5FA6E0"/>
+      <stop offset="50%"  stop-color="#3A86C8"/>
+      <stop offset="100%" stop-color="#2C6DA7"/>
+    </linearGradient>
+  </defs>
+  <!-- Hexagon shield -->
+  <polygon
+    points="30,3 53,16 53,44 30,57 7,44 7,16"
+    fill="url(#markGrad)"
+  />
+  <!-- Inner shield accent -->
+  <path
+    d="M30 14 L42 20 L42 32 C42 38.5 36.5 43.5 30 46 C23.5 43.5 18 38.5 18 32 L18 20 Z"
+    fill="none"
+    stroke="rgba(255,255,255,0.25)"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+  <!-- Checkmark -->
+  <polyline
+    points="23,30 28,35 37,24"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
