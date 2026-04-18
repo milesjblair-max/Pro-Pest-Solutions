@@ -88,7 +88,7 @@ Files containing the phone number:
 - `thank-you.html`
 
 ### Business Hours
-Set in `contact.html` in the Contact Information list. Currently "Monday – Friday, 9:00 am – 5:30 pm".
+Set in `contact.html` in the Contact Information list. Currently "Monday – Saturday, 9:00 am – 5:30 pm".
 
 ### Canonical URLs and meta tags
 Each page has `<link rel="canonical" href="...">` and `<meta property="og:url">`. These currently point to `propestsolutionswa.com` — update if the production domain changes.
