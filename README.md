@@ -65,7 +65,7 @@ npx serve .
 
 1. Add a `CNAME` file to the project root containing your domain:
    ```
-   propestsolutions.com.au
+   propestsolutionswa.com
    ```
 2. Configure your domain's DNS:
    - Add a `CNAME` record pointing to `yourusername.github.io`
@@ -99,7 +99,7 @@ In `testimonials.html` and `index.html`, find the `testimonial-card` blocks mark
 Remove the `.placeholder-notice` banner in `testimonials.html` once real testimonials are added.
 
 ### Canonical URLs and meta tags
-Each page has `<link rel="canonical" href="...">` and `<meta property="og:url">`. Update `propestsolutions.com.au` with your actual domain once it is live.
+Each page has `<link rel="canonical" href="...">` and `<meta property="og:url">`. These currently point to `propestsolutionswa.com` — update if the production domain changes.
 
 ---
 
