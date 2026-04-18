@@ -285,29 +285,19 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
 .nav-logo { display: flex; align-items: center; flex-shrink: 0; }
 
-/* ---- Logo image (PNG) ---- */
+/* ---- Inline SVG brand logo ----
+   Sized by height; the SVG's own viewBox preserves aspect ratio, so width stays proportional.
+*/
 .site-logo {
-  height: 40px;
-  width: auto;
-  max-width: 200px;
-  object-fit: contain;
-  object-position: left center;
   display: block;
+  height: 38px;
+  width: auto;
 }
-.site-logo--footer {
-  height: 52px;
-  max-width: 260px;
-}
+.site-logo--footer { height: 48px; }
 
 @media (min-width: 1024px) {
-  .site-logo {
-    height: 48px;
-    max-width: 240px;
-  }
-  .site-logo--footer {
-    height: 60px;
-    max-width: 300px;
-  }
+  .site-logo { height: 44px; }
+  .site-logo--footer { height: 56px; }
 }
 
 .nav-links {
@@ -747,49 +737,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   .cta-actions .btn { flex-shrink: 0; }
 }
 
-/* ---- Testimonials ---- */
-.testimonial-card {
-  background: var(--pps-bg-panel);
-  border: 1px solid var(--pps-border);
-  border-radius: var(--r-xl);
-  padding: var(--sp-8);
-  display: flex;
-  flex-direction: column;
-}
-.testimonial-stars {
-  display: flex;
-  gap: 3px;
-  margin-bottom: var(--sp-5);
-  color: #F59E0B;
-}
-.testimonial-quote {
-  font-size: var(--text-base);
-  color: var(--pps-text-secondary);
-  line-height: 1.75;
-  flex: 1;
-  margin-bottom: var(--sp-6);
-  font-style: italic;
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-.testimonial-author { display: flex; align-items: center; gap: var(--sp-4); }
-.testimonial-avatar {
-  width: 44px;
-  height: 44px;
-  background: rgba(58,134,200,0.15);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--text-base);
-  font-weight: var(--fw-bold);
-  color: var(--pps-blue-highlight);
-  flex-shrink: 0;
-  font-style: normal;
-}
-.testimonial-name { font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--pps-text-primary); }
-.testimonial-role { font-size: var(--text-xs); color: var(--pps-text-muted); }
-
 /* ---- Service block (services page) ---- */
 .service-block {
   background: var(--pps-bg-panel);
@@ -1217,9 +1164,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   /* Forms */
   .form-wrap { padding: var(--sp-4); border-radius: var(--r-lg); }
   fieldset { padding: 0; }
-
-  /* Testimonials */
-  .testimonial-card { padding: var(--sp-5); }
 
   /* About page area boxes */
   .card { padding: var(--sp-4); }
