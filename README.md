@@ -105,22 +105,25 @@ Each page has `<link rel="canonical" href="...">` and `<meta property="og:url">`
 
 ## Setting Up the Contact and Booking Forms
 
-The forms use a Formspree-style POST action. GitHub Pages cannot process forms server-side, so you need a third-party form service.
+Forms currently use a `mailto:` action pointing to `Elliott@propestsolutionswa.com`. Submissions open the visitor's default mail client with the form data pre-filled — no backend required, but the visitor must send the email manually.
 
-### Using Formspree (recommended, free tier available)
+### Upgrading to a hosted form handler (recommended for production)
 
-1. Go to [formspree.io](https://formspree.io) and create an account
-2. Click **+ New Form**, give it a name (e.g., "Pro Pest Solutions — Quote Request")
-3. Copy the endpoint URL — it will look like: `https://formspree.io/f/abcdefgh`
-4. In both `contact.html` and `booking.html`, find:
+A hosted handler delivers submissions directly to your inbox without the visitor needing an email client.
+
+1. Sign up at [formspree.io](https://formspree.io) and create a form that delivers to `Elliott@propestsolutionswa.com`.
+2. Copy the endpoint URL (e.g. `https://formspree.io/f/abcdefgh`).
+3. In `contact.html` and `booking.html`, update the `<form>` tags:
    ```html
-   action="https://formspree.io/f/YOUR_FORM_ID"
+   <!-- from -->
+   action="mailto:Elliott@propestsolutionswa.com" method="POST" enctype="text/plain"
+   <!-- to -->
+   action="https://formspree.io/f/abcdefgh" method="POST"
    ```
-5. Replace `YOUR_FORM_ID` with your actual Formspree form ID
-6. Deploy — form submissions will be emailed to your registered Formspree address
+   Remove the `enctype="text/plain"` attribute.
 
 ### Alternative form services
-- [Netlify Forms](https://www.netlify.com/products/forms/) — if hosting on Netlify instead of GitHub Pages
+- [Netlify Forms](https://www.netlify.com/products/forms/) — if hosting on Netlify
 - [Basin](https://usebasin.com)
 - [EmailJS](https://www.emailjs.com) — JavaScript-based, requires minor code changes
 
@@ -132,11 +135,12 @@ All logos are stored in `assets/img/`:
 
 | File | Usage |
 |------|-------|
+| `Logo 1.2 PPS.png` | Primary logo used in the site header and footer |
 | `logo.svg` | Full horizontal logo — standalone use, email signatures |
 | `logo-mark.svg` | Compact hexagonal mark — app icons, watermarks |
 | `favicon.svg` | Browser tab icon — linked in all HTML `<head>` sections |
 
-The logos are also embedded inline within each HTML page's `<header>` and `<footer>` to avoid extra HTTP requests and rendering flash. To update logo colours site-wide, edit both the standalone SVG files and the inline SVG blocks in the HTML files. Search for `nLogoGrad` (nav logo) and `fLogoGrad` (footer logo) to find all inline instances.
+To swap the site logo, replace `assets/img/Logo 1.2 PPS.png` (all pages reference that path). The SVG variants are kept for off-site brand usage.
 
 ---
 
