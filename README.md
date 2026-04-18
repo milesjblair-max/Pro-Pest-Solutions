@@ -13,9 +13,9 @@ Pro-Pest-Solutions/
 ├── index.html              # Home / Landing Page
 ├── about.html              # About page
 ├── services.html           # Services page
-├── testimonials.html       # Testimonials page
 ├── contact.html            # Contact page
 ├── booking.html            # Quote / Booking form
+├── thank-you.html          # Post-submit confirmation page
 ├── assets/
 │   ├── css/
 │   │   └── styles.css      # All styles — design tokens, components, layout
@@ -65,7 +65,7 @@ npx serve .
 
 1. Add a `CNAME` file to the project root containing your domain:
    ```
-   propestsolutions.com.au
+   propestsolutionswa.com
    ```
 2. Configure your domain's DNS:
    - Add a `CNAME` record pointing to `yourusername.github.io`
@@ -83,60 +83,59 @@ Files containing the phone number:
 - `index.html`
 - `about.html`
 - `services.html`
-- `testimonials.html`
 - `contact.html`
 - `booking.html`
+- `thank-you.html`
 
 ### Business Hours
-In `contact.html`, find the text `Hours placeholder — update with actual business hours` and replace with real hours.
-
-### Testimonials
-In `testimonials.html` and `index.html`, find the `testimonial-card` blocks marked with "Testimonial placeholder". Replace each with:
-- Real customer quote
-- Customer's first name (or initials)
-- Customer's role / property type and suburb
-
-Remove the `.placeholder-notice` banner in `testimonials.html` once real testimonials are added.
+Set in `contact.html` in the Contact Information list. Currently "Monday – Saturday, 9:00 am – 5:30 pm".
 
 ### Canonical URLs and meta tags
-Each page has `<link rel="canonical" href="...">` and `<meta property="og:url">`. Update `propestsolutions.com.au` with your actual domain once it is live.
+Each page has `<link rel="canonical" href="...">` and `<meta property="og:url">`. These currently point to `propestsolutionswa.com` — update if the production domain changes.
 
 ---
 
 ## Setting Up the Contact and Booking Forms
 
-The forms use a Formspree-style POST action. GitHub Pages cannot process forms server-side, so you need a third-party form service.
+Both forms POST to [FormSubmit.co](https://formsubmit.co), which forwards submissions to `Elliott@propestsolutionswa.com` with the subject **"New Enquiry"**. No account or API key required.
 
-### Using Formspree (recommended, free tier available)
+### One-time activation
+The very first form submission triggers an activation email from FormSubmit to Elliott. Elliott must click the confirmation link inside before any further submissions are delivered. Until then, submissions return an activation prompt instead of being forwarded.
 
-1. Go to [formspree.io](https://formspree.io) and create an account
-2. Click **+ New Form**, give it a name (e.g., "Pro Pest Solutions — Quote Request")
-3. Copy the endpoint URL — it will look like: `https://formspree.io/f/abcdefgh`
-4. In both `contact.html` and `booking.html`, find:
-   ```html
-   action="https://formspree.io/f/YOUR_FORM_ID"
-   ```
-5. Replace `YOUR_FORM_ID` with your actual Formspree form ID
-6. Deploy — form submissions will be emailed to your registered Formspree address
+### How to test
+1. Open the site locally or once deployed.
+2. Submit either the `contact.html` or `booking.html` form with real values.
+3. Check Elliott's inbox (and spam folder) for the FormSubmit activation email and click **Confirm**.
+4. Submit the form again — the submission should arrive at Elliott's inbox, titled "New Enquiry", containing all field values.
+
+### Hidden configuration fields
+Each form includes these hidden inputs controlling FormSubmit's behaviour:
+- `_subject` — email subject line (currently "New Enquiry")
+- `_template` — output format ("table" gives a clean tabular email)
+- `_captcha` — set to `false` to skip FormSubmit's captcha page
+- `_next` — redirect URL after a successful submission (currently `thank-you.html`)
+
+### Hiding the email from the form action
+The current setup exposes `Elliott@propestsolutionswa.com` in the form's `action` URL, which scrapers can find. To hide it, submit any form once, activate it, then replace the action URL with the hashed version FormSubmit provides in the activation email (e.g. `https://formsubmit.co/a1b2c3d4...`).
 
 ### Alternative form services
-- [Netlify Forms](https://www.netlify.com/products/forms/) — if hosting on Netlify instead of GitHub Pages
+- [Formspree](https://formspree.io) — requires signup, more features, free tier 50/mo
+- [Netlify Forms](https://www.netlify.com/products/forms/) — if hosting on Netlify
 - [Basin](https://usebasin.com)
-- [EmailJS](https://www.emailjs.com) — JavaScript-based, requires minor code changes
 
 ---
 
 ## Logo Assets
 
-All logos are stored in `assets/img/`:
+The site header and footer use an **inline SVG logo** (a hex-shield mark with gradient, a certification checkmark, and the "PRO PEST / SOLUTIONS" wordmark). Inlining keeps the logo crisp at every size, matches the brand colour tokens, and removes a network request.
 
 | File | Usage |
 |------|-------|
-| `logo.svg` | Full horizontal logo — standalone use, email signatures |
-| `logo-mark.svg` | Compact hexagonal mark — app icons, watermarks |
-| `favicon.svg` | Browser tab icon — linked in all HTML `<head>` sections |
+| `assets/img/logo.svg` | Standalone horizontal logo — email signatures, off-site use |
+| `assets/img/logo-mark.svg` | Compact hexagonal mark — app icons, watermarks |
+| `assets/img/favicon.svg` | Browser tab icon — linked in every page's `<head>` |
 
-The logos are also embedded inline within each HTML page's `<header>` and `<footer>` to avoid extra HTTP requests and rendering flash. To update logo colours site-wide, edit both the standalone SVG files and the inline SVG blocks in the HTML files. Search for `nLogoGrad` (nav logo) and `fLogoGrad` (footer logo) to find all inline instances.
+To change the site logo, edit the inline SVG block in the `<header>` and `<footer>` of each HTML page, **and** update `assets/img/logo.svg` so off-site usage stays in sync. The colours come from `--pps-blue-highlight / primary / deep` — tweak the `<linearGradient>` stops to rebrand.
 
 ---
 

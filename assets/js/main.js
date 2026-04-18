@@ -6,6 +6,8 @@
 (function () {
   'use strict';
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ---- Sticky header ---- */
   const header = document.getElementById('site-header');
   if (header) {
@@ -13,36 +15,12 @@
       header.classList.toggle('scrolled', window.scrollY > 8);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run on load
+    onScroll();
   }
 
   /* ---- Mobile navigation ---- */
   const toggle = document.getElementById('nav-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-
-  if (toggle && mobileMenu) {
-    toggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
-      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Close on overlay click
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) closeMobileMenu();
-    });
-
-    // Close on nav link click
-    mobileMenu.querySelectorAll('.mobile-nav-link').forEach((link) => {
-      link.addEventListener('click', closeMobileMenu);
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMobileMenu();
-    });
-  }
 
   function closeMobileMenu() {
     if (!mobileMenu || !toggle) return;
@@ -52,39 +30,60 @@
     document.body.style.overflow = '';
   }
 
+  if (toggle && mobileMenu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMobileMenu();
+    });
+
+    mobileMenu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+  }
+
   /* ---- Active nav link ---- */
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link, .mobile-nav-link').forEach((link) => {
-    const href = link.getAttribute('href') || '';
-    const linkPage = href.split('/').pop();
-    if (linkPage === currentPath || (currentPath === '' && linkPage === 'index.html')) {
+    const linkPage = (link.getAttribute('href') || '').split('/').pop();
+    if (linkPage === currentPage) {
       link.setAttribute('aria-current', 'page');
     }
   });
 
-  /* ---- Form submission feedback ---- */
+  /* ---- Form submission feedback ----
+     Forms currently submit via `mailto:`, which opens the user's mail client
+     without navigating the page. We show a brief "Sending…" state and reset.
+     When swapped to a hosted handler (Formspree etc.), the page will navigate
+     on submit and the reset becomes a no-op.
+  */
   document.querySelectorAll('form[data-form]').forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', () => {
       const submitBtn = form.querySelector('[type="submit"]');
       if (!submitBtn) return;
 
-      // Let Formspree handle the actual POST; just show loading state
+      const originalHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      const originalText = submitBtn.textContent;
       submitBtn.textContent = 'Sending…';
 
-      // Re-enable after timeout in case of client-side error
       setTimeout(() => {
-        if (submitBtn.disabled) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-        }
-      }, 8000);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+      }, 2500);
     });
   });
 
-  /* ---- Smooth reveal on scroll (IntersectionObserver) ---- */
-  if ('IntersectionObserver' in window) {
+  /* ---- Smooth reveal on scroll ---- */
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
     const revealElements = document.querySelectorAll('[data-reveal]');
     if (revealElements.length) {
       const observer = new IntersectionObserver(

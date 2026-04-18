@@ -1,54 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" role="img" aria-label="Pro Pest Solutions">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" role="img" aria-label="Pro Pest Solutions">
   <defs>
-    <linearGradient id="logoGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="ppsMark" x1="0.5" y1="0" x2="0.5" y2="1">
       <stop offset="0%"   stop-color="#5FA6E0"/>
-      <stop offset="50%"  stop-color="#3A86C8"/>
+      <stop offset="55%"  stop-color="#3A86C8"/>
       <stop offset="100%" stop-color="#2C6DA7"/>
+    </linearGradient>
+    <linearGradient id="ppsGloss" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
-  <!-- Hexagon mark (56 × 56, centered at 28 28) -->
-  <polygon
-    points="28,2 51,15 51,41 28,54 5,41 5,15"
-    fill="url(#logoGrad)"
-  />
-  <!-- Inner shield -->
-  <path
-    d="M28 13 L39 18.5 L39 29.5 C39 35.5 34.5 39.5 28 42 C21.5 39.5 17 35.5 17 29.5 L17 18.5 Z"
-    fill="none"
-    stroke="rgba(255,255,255,0.25)"
-    stroke-width="1.2"
-    stroke-linejoin="round"
-  />
-  <!-- Checkmark -->
-  <polyline
-    points="22,29 27,34 35,23"
-    fill="none"
-    stroke="#FFFFFF"
-    stroke-width="2.2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
+  <!-- Hexagon mark with gradient + top gloss -->
+  <path d="M28 3 L50 15.5 L50 40.5 L28 53 L6 40.5 L6 15.5 Z"
+        fill="url(#ppsMark)"
+        stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <path d="M28 3 L50 15.5 L50 28 L6 28 L6 15.5 Z" fill="url(#ppsGloss)"/>
 
-  <!-- Wordmark: "PRO PEST" -->
-  <text
-    x="66"
-    y="26"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif"
-    font-size="17"
-    font-weight="700"
-    letter-spacing="0.04em"
-    fill="#FFFFFF"
-  >PRO PEST</text>
+  <!-- Inner shield outline with subtle depth tint -->
+  <path d="M28 14 L39 19.5 L39 30.5 C39 36 34 39.5 28 41.5 C22 39.5 17 36 17 30.5 L17 19.5 Z"
+        fill="rgba(15,17,19,0.18)"
+        stroke="rgba(255,255,255,0.28)" stroke-width="1.2" stroke-linejoin="round"/>
 
-  <!-- Wordmark: "SOLUTIONS" -->
-  <text
-    x="66"
-    y="43"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif"
-    font-size="11"
-    font-weight="500"
-    letter-spacing="0.14em"
-    fill="#5FA6E0"
-  >SOLUTIONS</text>
+  <!-- Certification checkmark -->
+  <path d="M22 29.5 L26.5 34 L34.5 24"
+        fill="none" stroke="#FFFFFF" stroke-width="2.4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Wordmark -->
+  <text x="66" y="26"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif"
+        font-size="17" font-weight="800" letter-spacing="0.02em" fill="#FFFFFF">PRO PEST</text>
+  <text x="66" y="43"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif"
+        font-size="10" font-weight="600" letter-spacing="0.26em" fill="#5FA6E0">SOLUTIONS</text>
 </svg>
