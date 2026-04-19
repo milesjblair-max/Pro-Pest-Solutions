@@ -29,6 +29,17 @@ jobs:
         with:
           enablement: true
 
+      - name: Configure custom domain
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -X PUT \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -d '{"cname":"propestsolutionswa.com","https_enforced":true}'
+
       - name: Upload static site artifact
         uses: actions/upload-pages-artifact@v3
         with:
