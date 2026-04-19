@@ -77,7 +77,7 @@ npx serve .
 ## Where to Update Content
 
 ### Phone Number
-The phone number `0403 812 255` appears in multiple files. Search all `.html` files for `0403812255` (tel link) and `0403 812 255` (display text) to update them all.
+The phone number `(08) 6558 0449` appears in multiple files. Search all `.html` files for `0865580449` (tel link) and `(08) 6558 0449` (display text) to update them all.
 
 Files containing the phone number:
 - `index.html`
