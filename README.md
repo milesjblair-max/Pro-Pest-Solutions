@@ -1,6 +1,6 @@
 # Pro Pest Solutions — Website
 
-A production-ready static website for **Pro Pest Solutions**, a professional pest management business operating across the Greater Perth metropolitan area.
+A production-ready static website for **Pro Pest Solutions**, a professional pest management business operating across the Perth Region.
 
 Built with plain HTML, CSS, and minimal vanilla JavaScript. No frameworks, no build tools, no dependencies.
 
