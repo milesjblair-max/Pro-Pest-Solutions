@@ -470,21 +470,21 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 
 .hero-title {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-size: clamp(1.875rem, 3.4vw, 2.75rem);
   font-weight: var(--fw-extrabold);
-  line-height: 1.08;
+  line-height: 1.12;
   letter-spacing: -0.025em;
   color: var(--pps-text-primary);
-  margin-bottom: var(--sp-6);
+  margin-bottom: var(--sp-5);
 }
 .hero-title .accent { color: var(--pps-blue-highlight); }
 
 .hero-desc {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   color: var(--pps-text-secondary);
-  line-height: 1.75;
+  line-height: 1.7;
   max-width: 560px;
-  margin-bottom: var(--sp-8);
+  margin-bottom: var(--sp-6);
 }
 
 .hero-actions {
@@ -525,6 +525,57 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   word-break: break-word;
 }
 .hero-meta-item svg { color: var(--pps-blue-primary); flex-shrink: 0; }
+
+/* ---- Hero + embedded quote form layout ---- */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-10);
+  align-items: center;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--sp-16);
+  }
+}
+
+.hero-form {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.hero-form .form-wrap { padding: var(--sp-6); }
+@media (min-width: 768px) {
+  .hero-form .form-wrap { padding: var(--sp-8); }
+}
+.hero-form-title {
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--pps-text-primary);
+  margin-bottom: var(--sp-1);
+}
+.hero-form-subtitle {
+  font-size: var(--text-sm);
+  color: var(--pps-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--sp-5);
+}
+.hero-form-subtitle .req { color: var(--pps-blue-primary); }
+.hero-form-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-5);
+}
+.hero-form-submit { width: 100%; justify-content: center; }
+.hero-form-note {
+  font-size: var(--text-xs);
+  color: var(--pps-text-muted);
+  text-align: center;
+  margin-top: var(--sp-3);
+}
 
 /* ---- Trust strip ---- */
 .trust-strip {
