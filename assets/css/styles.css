@@ -587,8 +587,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   border-top: 1px solid var(--pps-border);
 }
 .trust-strip--hero .trust-strip-inner {
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3) var(--sp-6);
   padding-inline: 0;
+  justify-items: start;
 }
 
 /* ---- Trust strip ---- */
