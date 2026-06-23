@@ -577,6 +577,20 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   margin-top: var(--sp-3);
 }
 
+/* ---- Trust strip (in-hero variant) ---- */
+.trust-strip--hero {
+  background: none;
+  border: none;
+  padding-block: 0;
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--pps-border);
+}
+.trust-strip--hero .trust-strip-inner {
+  justify-content: flex-start;
+  padding-inline: 0;
+}
+
 /* ---- Trust strip ---- */
 .trust-strip {
   background: var(--pps-bg-panel);
