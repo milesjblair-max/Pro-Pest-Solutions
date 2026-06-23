@@ -589,9 +589,15 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .trust-strip--hero .trust-strip-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--sp-3) var(--sp-6);
+  gap: var(--sp-3) var(--sp-4);
   padding-inline: 0;
   justify-items: start;
+}
+.trust-strip--hero .trust-item {
+  font-size: var(--text-xs);
+  white-space: normal;
+  word-break: break-word;
+  min-width: 0;
 }
 
 /* ---- Trust strip ---- */
