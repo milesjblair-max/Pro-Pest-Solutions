@@ -588,9 +588,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .trust-strip--hero .trust-strip-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-3) var(--sp-4);
+  grid-template-columns: auto auto;
+  gap: var(--sp-3) var(--sp-8);
   padding-inline: 0;
+  justify-content: center;
   justify-items: start;
 }
 .trust-strip--hero .trust-item {
